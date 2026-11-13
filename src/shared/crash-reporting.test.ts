@@ -53,6 +53,12 @@ describe('crash-reporting shared helpers', () => {
     )
   })
 
+  it('redacts URL passwords with characters outside the plain credential charset', () => {
+    expect(sanitizeCrashReportString('socks5://alice:p!ss@proxy')).toBe(
+      'socks5://[redacted-credential]@proxy'
+    )
+  })
+
   it('keeps details on a strict primitive allowlist', () => {
     const longStack = [
       'Error: boom',

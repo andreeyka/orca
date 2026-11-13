@@ -3,6 +3,7 @@ import type {
   CrashReportBreadcrumbInput,
   CrashReportDetailValue
 } from './crash-reporting'
+import { redactUrlCredentials } from './url-credential-redaction'
 
 const MAX_STRING_DETAIL_LENGTH = 240
 const MAX_STACK_DETAIL_LENGTH = 4_000
@@ -42,6 +43,7 @@ export function sanitizeCrashReportString(
   for (const pattern of PATH_PATTERNS) {
     sanitized = sanitized.replace(pattern, '[redacted-path]')
   }
+  sanitized = redactUrlCredentials(sanitized, '[redacted-credential]')
   sanitized = sanitized.replace(CREDENTIAL_URL_PATTERN, '[redacted-credential]@')
   sanitized = sanitized.replace(SECRET_ASSIGNMENT_PATTERN, (_match, key: string) => {
     return `${key}=[redacted]`

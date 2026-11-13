@@ -1,4 +1,4 @@
-import { stripCredentialsFromMessage } from './git/remotes/git-remote-error'
+import { stripCredentialsFromMessage } from './url-credential-redaction'
 
 // Kept apart from the result diagnostics so browser bundles can redact without the pairing codec.
 export function redactEphemeralVmRecipeDiagnosticText(text: string): string {

@@ -1,4 +1,4 @@
-import { stripCredentialsFromMessage } from '../../git/remotes/git-remote-error'
+import { stripCredentialsFromMessage } from '../../url-credential-redaction'
 import { parseGitRepositoryIdentity } from '../catalog/plugin-marketplace'
 
 export const GIT_AUTH_FAILED_CODE = 'git_auth_failed'

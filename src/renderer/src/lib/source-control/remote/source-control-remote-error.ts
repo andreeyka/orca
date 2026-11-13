@@ -2,13 +2,13 @@ import { translate } from '@/i18n/i18n'
 import { stripAnsiEscapeSequences } from '../../../../../shared/ansi-escape-sequences'
 import {
   GIT_AUTHENTICATION_FAILED_MESSAGE,
-  formatSubmodulePushFailureDetail,
-  stripCredentialsFromMessage
+  formatSubmodulePushFailureDetail
 } from '../../../../../shared/git/remotes/git-remote-error'
 import {
   isPushHookFailure,
   summarizePushFailure
 } from '../../../../../shared/source-control/recovery/source-control-push-failure'
+import { stripCredentialsFromMessage } from '../../../../../shared/url-credential-redaction'
 import {
   type PullLikeOperation,
   type PushLikeOperation,

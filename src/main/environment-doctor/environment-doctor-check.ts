@@ -3,7 +3,7 @@ import type {
   EnvironmentDoctorCheck,
   EnvironmentDoctorCheckStatus
 } from '../../shared/environment-doctor-types'
-import { stripCredentialsFromMessage } from '../../shared/git/remotes/git-remote-error'
+import { stripCredentialsFromMessage } from '../../shared/url-credential-redaction'
 
 export type EnvironmentDoctorCommandResult = {
   code: number | null

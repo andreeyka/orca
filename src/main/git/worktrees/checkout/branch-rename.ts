@@ -1,7 +1,5 @@
-import {
-  isNoUpstreamError,
-  stripCredentialsFromMessage
-} from '../../../../shared/git/remotes/git-remote-error'
+import { isNoUpstreamError } from '../../../../shared/git/remotes/git-remote-error'
+import { stripCredentialsFromMessage } from '../../../../shared/url-credential-redaction'
 import {
   resolveEffectiveGitUpstream,
   type GitCommandRunner

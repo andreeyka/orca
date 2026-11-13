@@ -1,4 +1,4 @@
-import { stripCredentialsFromMessage } from './git-remote-error'
+import { stripCredentialsFromMessage } from '../../url-credential-redaction'
 
 // Noninteractive clones cannot prompt and use keys on the destination host; users may otherwise compare failures to successful client-local clones.
 const CLONE_HOST_NOTE =

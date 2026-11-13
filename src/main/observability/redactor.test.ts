@@ -38,6 +38,14 @@ describe('redactor — labeled key-value', () => {
   })
 })
 
+describe('redactor — URL credentials', () => {
+  it('redacts proxy credentials on non-HTTP schemes', () => {
+    expect(redactString('connect failed via socks5://alice:s3cret@corp:1080')).toBe(
+      'connect failed via socks5://[redacted]@corp:1080'
+    )
+  })
+})
+
 describe('redactor — complete credential spans', () => {
   it.each([
     {

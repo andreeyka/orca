@@ -1,3 +1,4 @@
+import { redactUrlCredentials } from '../../shared/url-credential-redaction'
 import { redactCredentialAssignments } from './credential-assignment-redaction'
 
 // Apply idempotent redaction at sink write, bundle collection and server ingest.
@@ -27,9 +28,6 @@ const PROVIDER_PATTERNS: { tag: string; re: RegExp }[] = [
     re: /-----BEGIN [A-Z ]+-----[\s\S]*?(?:-----END [A-Z ]+-----|(?![\s\S]))/g
   }
 ]
-
-// Strip both user:pass@ and token@ while retaining host/path diagnostics.
-const URL_USERINFO = /(https?:\/\/)([^/@\s]+)@/g
 
 // Match whole multiline .env values, including Bearer tails, but skip empty values.
 const ENV_LINE = /^\s*([A-Z_][A-Z0-9_]*)\s*=\s*\S.*/my
@@ -104,7 +102,7 @@ export function redactString(input: string): string {
   out = redactCredentialAssignments(out).replace(STANDALONE_BEARER, '[redacted:labeled-kv]')
 
   // Provider shapes run first to retain specific tags in URL userinfo.
-  out = out.replace(URL_USERINFO, '$1[redacted]@')
+  out = redactUrlCredentials(out, '[redacted]')
 
   // Labeled redaction wins over coincidental .env-shaped substrings.
   out = redactEnvironmentLines(out)
